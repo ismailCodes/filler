@@ -6,7 +6,7 @@
 /*   By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 21:12:04 by ielmoudn          #+#    #+#             */
-/*   Updated: 2020/02/08 19:01:29 by ielmoudn         ###   ########.fr       */
+/*   Updated: 2020/02/09 00:32:15 by ielmoudn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct	s_env
 {
 	int		p_num;
 	int		**board;
+	int		**piece;
+	int		opponent;
+	int		hm_with;
 	t_coord	b_coord;
 	t_coord	p_coord;
 }				t_env;
@@ -40,8 +43,15 @@ typedef struct	s_env
 int		get_next_line(const int fd, char **line);
 void	get_board(t_env *env);
 void	get_player_num(t_env *env);
-void	get_board_dim(t_env *env);
+void	get_token_dim(t_env *env, char b_p);
+void	heatmap_trig(t_env *env);
+void	get_piece(t_env *env);
+int		assign_char(char current);
+void	create_token(t_env *env, char b_p);
 
+
+void	print_board(t_env *env);
+void	print_piece(t_env *env);
 
 
 #endif

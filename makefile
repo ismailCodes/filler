@@ -8,7 +8,8 @@ _END = \x1b[0m
 
 CC = gcc
 NAME = ismail.filler
-FILENAMES = test.c get_next_line.c board_utils.c
+FILENAMES = test.c get_next_line.c board_utils.c heatmap.c\
+			piece_utils.c
 
 HEADER_FILE = ./inc/filler.h
 SRC_DIR = ./src
