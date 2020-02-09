@@ -6,7 +6,7 @@
 /*   By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 21:12:04 by ielmoudn          #+#    #+#             */
-/*   Updated: 2020/02/09 17:41:10 by ielmoudn         ###   ########.fr       */
+/*   Updated: 2020/02/09 23:18:04 by ielmoudn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ typedef struct	s_env
 	int		player;
 	int		opponent;
 	int		hm_with;
+	int		min_x;
+	int		min_y;
+	int		max_x;
+	int		max_y;
 	int		best_score;
 	int		best_x;
 	int		best_y;
@@ -53,6 +57,8 @@ void	get_piece(t_env *env);
 int		assign_char(char current);
 void	create_token(t_env *env, char b_p);
 void	score(t_env *env);
+void	reinit_all(t_env *env);
+
 
 
 void	print_board(t_env *env);
