@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/09 14:05:07 by ielmoudn          #+#    #+#              #
+#    Updated: 2020/02/09 17:39:47 by ielmoudn         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 _lCYAN = \x1b[96m
 _lYELLOW = \x1b[93m
 _lGREEN = \x1b[92m
@@ -8,8 +20,8 @@ _END = \x1b[0m
 
 CC = gcc
 NAME = ismail.filler
-FILENAMES = test.c get_next_line.c board_utils.c heatmap.c\
-			piece_utils.c
+FILENAMES = main.c get_next_line.c board_utils.c heatmap.c\
+			piece_utils.c scoring.c
 
 HEADER_FILE = ./inc/filler.h
 SRC_DIR = ./src
