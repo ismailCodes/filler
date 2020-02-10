@@ -6,19 +6,19 @@
 /*   By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 18:45:32 by ielmoudn          #+#    #+#             */
-/*   Updated: 2020/02/09 00:33:03 by ielmoudn         ###   ########.fr       */
+/*   Updated: 2020/02/10 20:03:27 by ielmoudn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/filler.h"
 
-void	get_player_num(t_env *env)
+void	get_player_num(int *p_num)
 {
 	char	*line;
 
-	get_next_line(0, &line);
-	ft_putendl_fd(line, 2);
-	env->p_num = line[10] - 48;
+	if (get_next_line(0, &line) <= 0)
+		exit_free_all();
+	*p_num = line[10] - 48;
 	safe_free(line);
 }
 
@@ -27,14 +27,16 @@ void	get_token_dim(t_env *env, char b_p)
 	char	*line;
 	char	*temp;
 
-	get_next_line(0, &line);
+	if (get_next_line(0, &line) <= 0)
+		exit_free_all();
 	temp = line + ((b_p == 'b') ? 8 : 6);
 	if (b_p == 'b')
 	{
 		env->b_coord.y = ft_atoi(temp);
 		env->b_coord.x = ft_atoi(ft_strchr(temp, ' '));
 		safe_free(line);
-		get_next_line(0, &line);
+		if (get_next_line(0, &line) <= 0)
+			exit_free_all();
 	}
 	else
 	{
@@ -61,7 +63,6 @@ void	create_token(t_env *env, char b_p)
 		while (++i < env->p_coord.y)
 			env->piece[i] = (int*)safe_malloc(sizeof(int) * env->p_coord.x);
 	}
-	
 }
 
 int		assign_char(char current)
@@ -85,12 +86,13 @@ void	get_board(t_env *env)
 
 	j = -1;
 	create_token(env, 'b');
-	while(++j < env->b_coord.y)
+	while (++j < env->b_coord.y)
 	{
 		i = -1;
-		get_next_line(0, &line);
+		if (get_next_line(0, &line) <= 0)
+			exit_free_all();
 		temp = ft_strchr(line, ' ') + 1;
-		while(++i < env->b_coord.x)
+		while (++i < env->b_coord.x)
 			env->board[j][i] = assign_char(temp[i]);
 		safe_free(line);
 	}

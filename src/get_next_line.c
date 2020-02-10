@@ -6,37 +6,49 @@
 /*   By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 21:02:07 by ielmoudn          #+#    #+#             */
-/*   Updated: 2020/02/09 23:15:41 by ielmoudn         ###   ########.fr       */
+/*   Updated: 2020/02/10 20:03:43 by ielmoudn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/filler.h"
 
-int		get_next_line(const int fd, char **line)
+static int		ft_full(char **str, char **line)
 {
-	static char	*ptr;
-	char		*tmp;
-	int			rd;
-	char		bfr[BUFF_SIZE + 1];
+	char	*tmp;
+	char	*index;
 
-	ptr = (!ptr) ? "" : ptr;
-	while ((rd = read(fd, bfr, BUFF_SIZE)))
+	tmp = *str;
+	if ((index = ft_strchr(*str, '\n')))
+		*index = '\0';
+	*line = ft_strdup(*str);
+	*str = NULL;
+	if (index && ft_strlen(index + 1))
+		*str = ft_strdup(index + 1);
+	ft_strdel(&tmp);
+	return (1);
+}
+
+int				get_next_line(const int fd, char **line)
+{
+	char		buff[BUFF_SIZE + 1];
+	char		*tmp;
+	static char	*str[4864];
+	int			n;
+
+	if (!line || fd < 0 || read(fd, buff, 0))
+		return (-1);
+	while ((n = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		bfr[rd] = '\0';
-		tmp = ptr;
-		ptr = ft_strjoin(ptr, bfr);
-		(ft_strlen(tmp) != 0) ? free(tmp) : 0;
-		if (ft_strchr(ptr, '\n'))
+		buff[n] = '\0';
+		if (!str[fd])
+			str[fd] = ft_strnew(0);
+		tmp = str[fd];
+		str[fd] = ft_strjoin(str[fd], buff);
+		ft_strdel(&tmp);
+		if (ft_strchr(str[fd], '\n'))
 			break ;
 	}
-	rd = 0;
-	if (ptr[0] == '\0')
+	if (!n && !str[fd])
 		return (0);
-	while (ptr[rd] && ptr[rd] != '\n')
-		rd++;
-	*line = ft_strsub(ptr, 0, rd);
-	tmp = ptr;
-	ptr = (ft_strchr(ptr, ptr[rd]) + 1);
-	free(tmp);
-	return (1);
+	return (ft_full(&str[fd], line));
 }

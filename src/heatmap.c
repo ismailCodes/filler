@@ -6,7 +6,7 @@
 /*   By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 20:47:55 by ielmoudn          #+#    #+#             */
-/*   Updated: 2020/02/09 21:12:44 by ielmoudn         ###   ########.fr       */
+/*   Updated: 2020/02/10 18:41:09 by ielmoudn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void		heatmap_trig(t_env *env)
 	env->opponent = (env->p_num == 1) ? -2 : -1;
 	env->hm_with = 1;
 	heati = -1;
-	while (++heati < (env->b_coord.x > env->b_coord.y ? env->b_coord.x : env->b_coord.y))
+	while (++heati < (env->b_coord.x > env->b_coord.y
+		? env->b_coord.x : env->b_coord.y))
 	{
 		j = -1;
 		while (++j < env->b_coord.y)
@@ -57,6 +58,4 @@ void		heatmap_trig(t_env *env)
 		env->opponent = env->hm_with;
 		env->hm_with += 1;
 	}
-	// print_board(env);
-	// sleep(1);
 }

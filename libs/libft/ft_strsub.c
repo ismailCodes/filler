@@ -6,7 +6,7 @@
 /*   By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 21:57:08 by ielmoudn          #+#    #+#             */
-/*   Updated: 2018/10/29 22:15:29 by ielmoudn         ###   ########.fr       */
+/*   Updated: 2020/02/10 13:18:19 by ielmoudn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	size_t	i;
 
 	i = 0;
-	new_str = (char*)malloc(len + 1);
+	new_str = (char*)safe_malloc(len + 1);
 	if (!new_str)
 		return (NULL);
 	if (s)

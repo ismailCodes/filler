@@ -6,7 +6,7 @@
 #    By: ielmoudn <ielmoudn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 14:05:07 by ielmoudn          #+#    #+#              #
-#    Updated: 2020/02/09 17:39:47 by ielmoudn         ###   ########.fr        #
+#    Updated: 2020/02/10 20:10:09 by ielmoudn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ _BOLD = \x1b[1m
 _END = \x1b[0m
 
 CC = gcc
-NAME = ismail.filler
+NAME = ielmoudn.filler
 FILENAMES = main.c get_next_line.c board_utils.c heatmap.c\
 			piece_utils.c scoring.c
 
